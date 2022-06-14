@@ -58,25 +58,16 @@ const Login: FC = () => {
               }}
             />
           </label>
-          <div>
+          <div className="containerButton">
             <Button
+              className="buttonLogin"
               onClick={() => {
                 iniciar();
                 logEvent(analytics, 'login');
               }}>
-              Iniciar por lampara
+              Iniciar Sesion
             </Button>
           </div>
-          {/* <input
-            name="btniniciar"
-            type="submit"
-            value="Iniciar Sesion"
-            onClick={iniciar}
-          /> */}
-          <a href=".">Olvido su contraseña?</a>
-          <a className="n_tiene" href=".">
-            No tiene cuenta?
-          </a>
           <br />
           <a id="regresar" href=".">
             Regresar

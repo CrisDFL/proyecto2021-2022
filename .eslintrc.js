@@ -59,7 +59,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    'max-lines': ['error', { max: 300, skipBlankLines: true }],
+    'max-lines': ['error', { max: 500, skipBlankLines: true }],
     'max-len': ['error', { code: 500 }],
     'react/jsx-filename-extension': [
       2,

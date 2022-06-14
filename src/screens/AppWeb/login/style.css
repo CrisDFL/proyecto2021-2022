@@ -71,8 +71,12 @@
   height: 25px;
   font-size: 13px;
 }
+.containerButton{
+  display: flex;
+  flex-direction: column;
+}
 
-.login input[type='submit'] {
+.login .buttonLogin {
   border: none;
   outline: none;
   height: 40px;
@@ -84,7 +88,7 @@
   font-weight: bold;
 }
 
-.login input[type='submit']:hover {
+.login .buttonLogin:hover {
   background-color: yellow;
 }
 
