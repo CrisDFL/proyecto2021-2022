@@ -7,7 +7,38 @@ const Galeria: FC = () => (
   <>
     <Nav />
     <Header />
-    <h1>lorem10000</h1>
+    <div className="gallery-container">
+            <div className="gallery-card">
+                <a href="/resources/img/galeria/perro1.png" data-lightbox="roadtrip">
+                  <img src="/resources/img/galeria/perro1.png" alt="Imagen" />
+                </a>
+            </div>
+            <div className="gallery-card">
+                <a href="/resources/img/galeria/perro2.png" data-lightbox="roadtrip">
+                  <img src="/resources/img/galeria/perro2.png" alt="Imagen" />
+                </a>
+            </div>
+            <div className="gallery-card">
+                <a href="/resources/img/galeria/perro3.png" data-lightbox="roadtrip">
+                  <img src="/resources/img/galeria/perro3.png" alt="Imagen" />
+                </a>
+            </div>
+            <div className="gallery-card">
+                <a href="/resources/img/galeria/perro4.png" data-lightbox="roadtrip">
+                  <img src="/resources/img/galeria/perro4.png" alt="Imagen" />
+                </a>
+            </div>
+            <div className="gallery-card">
+                <a href="/resources/img/galeria/perro5.jpg" data-lightbox="roadtrip">
+                  <img src="/resources/img/galeria/perro5.jpg" alt="Imagen" />
+                </a>
+            </div>
+            <div className="gallery-card">
+                <a href="/resources/img/galeria/perro6.jpg" data-lightbox="roadtrip">
+                  <img src="/resources/img/galeria/perro6.jpg" alt="Imagen" />
+                </a>
+            </div>
+    </div >
     <Footer />
   </>
 );
