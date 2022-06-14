@@ -1,19 +1,16 @@
 import { FC, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import db from '../../../firebase/firebaseConfig';
+import { Button } from '@mui/material';
 
-const Crud: FC = () => {
-  useEffect(() => {
-    const obtenerDatos = async () => {
-      const datos = await getDocs(collection(db, 'usuarios'));
-      console.log(datos.docs);
-    };
-    obtenerDatos();
-  }, []);
-
-  return (
-    <h1>hola</h1>
-  );
-};
+const Crud: FC = () => (
+  <div>
+    <h1>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur,
+      facilis aperiam dolorem, inventore dolor est cum ipsam aspernatur facere
+      ex quia! Laudantium laboriosam commodi optio facere ipsam. Eligendi,
+      delectus incidunt!
+    </h1>
+    <Button>Buenas</Button>
+  </div>
+);
 
 export default Crud;
