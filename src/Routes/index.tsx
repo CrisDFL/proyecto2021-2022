@@ -6,16 +6,16 @@ import Contactanos from '../screens/Contactanos';
 import Galeria from '../screens/Galeria';
 import Inicio from '../screens/Inicio';
 
-const Router:FC = () => (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Inicio/>} />
-                <Route path="Galeria" element={<Galeria/>} />
-                <Route path="Contactanos" element={<Contactanos/>} />
-                <Route path="Login" element={<Login/>} />
-                <Route path="Crud" element={<Crud />} />
-            </Routes>
-        </BrowserRouter>
+const Router: FC = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Inicio />} />
+      <Route path="Galeria" element={<Galeria />} />
+      <Route path="Contactanos" element={<Contactanos />} />
+      <Route path="Login" element={<Login />} />
+      <Route path="Crud" element={<Crud />} />
+    </Routes>
+  </BrowserRouter>
 );
 
 export default Router;

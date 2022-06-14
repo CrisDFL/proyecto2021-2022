@@ -6,13 +6,13 @@ import Principal from './components/principal';
 import Slice from './components/slice';
 
 const Inicio: FC = () => (
-    <>
-        <Nav />
-        <Header />
-        <Principal />
-        <Slice />
-        <Footer />
-    </>
+  <>
+    <Nav />
+    <Header />
+    <Principal />
+    <Slice />
+    <Footer />
+  </>
 );
 
 export default Inicio;
