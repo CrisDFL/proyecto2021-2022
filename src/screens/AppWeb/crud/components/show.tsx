@@ -34,6 +34,9 @@ const Show: FC = () => {
     getGestionClientes();
   };
   // 5. funcion de confirmacion para Sweet Alert 2
+  const confirmDelete = (id: string) => {
+    
+  };
 
   // 6. usamos useEffect
   useEffect(() => {
@@ -64,7 +67,7 @@ const Show: FC = () => {
                   <td>{gestionCliente.tel}</td>
                   <td>{gestionCliente.correo}</td>
                   <td>
-                    <Link to={`./Edit/${gestionCliente.id}`} className="btn btn-light">Editar</Link>
+                    <Link to="./Edit" className="btn btn-light">Editar</Link>
                     <Button onClick={() => { deleteGestionClientes(gestionCliente.id); }} className="btn btn-danger" >Borrar</Button>
                   </td>
                 </tr>

@@ -17,7 +17,7 @@ const Router: FC = () => (
       <Route path="Login" element={<Login />} />
       <Route path="Login/Crud" element={<Show />} />
       <Route path="Login/Crud/Create" element={<Create />} />
-      <Route path="Login/Crud/Edit:id" element={<Edit />} />
+      <Route path="Login/Crud/Edit" element={<Edit />} />
     </Routes>
   </BrowserRouter>
 );
