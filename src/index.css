@@ -19,10 +19,12 @@
 
 body {
   position: relative;
-  margin: 0 auto;
+  margin: 0;
   -moz-osx-font-smoothing: grayscale;
   transition: 1s all;
   max-width: 1800px;
   font-family: var(--fontPrimary);
   background-color: var(--black);
+  padding: 0;
+  box-sizing: border-box;
 }

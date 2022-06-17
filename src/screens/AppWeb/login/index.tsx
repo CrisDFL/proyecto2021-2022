@@ -4,19 +4,37 @@ import './style.css';
 import { Button } from '@mui/material';
 import { logEvent } from '@firebase/analytics';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { analytics } from '../../../utils/firebase';
 
 const Login: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const MySwal = withReactContent(Swal);
   const auth = getAuth();
   const iniciar = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { user } = userCredential;
-        navigate('./Crud');
-        console.log('Inicio sesion exitoso: ', user.email, password);
+        navigate('/Tables');
+        const Toast = MySwal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Inicio de sesión éxitoso!',
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +87,7 @@ const Login: FC = () => {
             </Button>
           </div>
           <br />
-          <a id="regresar" href=".">
+          <a id="regresar" href="/">
             Regresar
           </a>
         </form>

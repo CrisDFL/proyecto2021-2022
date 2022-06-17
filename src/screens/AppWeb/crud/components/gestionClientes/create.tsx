@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { addDoc, collection } from 'firebase/firestore';
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../../../../utils/firebase';
+import { db } from '../../../../../utils/firebase';
 
 const Create: FC = () => {
   const [nombre, setNombre] = useState('');
@@ -15,8 +15,8 @@ const Create: FC = () => {
 
   const store = async (e: any) => {
     e.preventDefault();
-    await addDoc(gestionClientesCollection, { nombre: nombre, tel: tel, correo: correo });
-    navigate('../Login/Crud');
+    await addDoc(gestionClientesCollection, { nombre, tel, correo });
+    navigate('/Create');
   };
   return (
     <div className="container">
@@ -26,19 +26,19 @@ const Create: FC = () => {
           <form onSubmit={store}>
             <div className="mb-3">
               <label htmlFor="." className="form-label">
-                Nombre
+                <p className="text-light">Nombre</p>
                 <input type="text"value={nombre} className="form-control" onChange={(e) => setNombre(e.target.value)} />
               </label>
             </div>
             <div className="mb-3">
               <label htmlFor="." className="form-label">
-                Telefono / Celular
+              <p className="text-light">Telefono / Celular</p>
                 <input type="text"value={tel} className="form-control" onChange={(e) => setTel(e.target.value)} />
               </label>
             </div>
             <div className="mb-3">
               <label htmlFor="." className="form-label">
-                Correo
+                <p className="text-light">Correo</p>
                 <input type="text"value={correo} className="form-control" onChange={(e) => setCorreo(e.target.value)} />
               </label>
             </div>

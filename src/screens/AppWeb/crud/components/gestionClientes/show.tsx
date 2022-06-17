@@ -5,8 +5,9 @@ import {
 } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { Button } from '@mui/material';
-import { db } from '../../../../utils/firebase';
+// import { Button } from '@mui/material';
+import { Button } from 'reactstrap';
+import { db } from '../../../../../utils/firebase';
 
 const MySwal = withReactContent(Swal);
 
@@ -24,18 +25,35 @@ const Show: FC = () => {
     setGestionClientes(
       data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
     );
-    console.log(gestionClientes);
+    // console.log(gestionClientes);
   };
 
   // 4. funcion para eliminar doc
-  const deleteGestionClientes = async (id: string) => {
+  const deleteGestionClientes = async (id) => {
     const gestionClientesDoc = doc(db, 'gestionClientes', id);
     await deleteDoc(gestionClientesDoc);
     getGestionClientes();
   };
   // 5. funcion de confirmacion para Sweet Alert 2
   const confirmDelete = (id: string) => {
-    
+    MySwal.fire({
+      title: 'Estas seguro?',
+      text: '¡No podrás revertir esto!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, bórralo!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteGestionClientes(id);
+        Swal.fire(
+          'Eliminado!',
+          'Su dato ha sido eliminado con éxito.',
+          'success',
+        );
+      }
+    });
   };
 
   // 6. usamos useEffect
@@ -48,7 +66,7 @@ const Show: FC = () => {
       <div className="row">
         <div className="col">
           <div className="d-grid" gap-2>
-            <Link to="./Create" className="btn btn-secondary mt-2 mb-2" >Create</Link>
+            <Link to="/Create" className="btn btn-secondary mt-2 mb-2" >Create</Link>
           </div>
           <table className="table table-dark table-hover">
             <thead>
@@ -67,8 +85,8 @@ const Show: FC = () => {
                   <td>{gestionCliente.tel}</td>
                   <td>{gestionCliente.correo}</td>
                   <td>
-                    <Link to="./Edit" className="btn btn-light">Editar</Link>
-                    <Button onClick={() => { deleteGestionClientes(gestionCliente.id); }} className="btn btn-danger" >Borrar</Button>
+                    <Link to={`/Edit/${gestionCliente.id}`} className="btn btn-light">Editar</Link>
+                    <Button onClick={() => { confirmDelete(gestionCliente.id); }} className="btn btn-danger">Borrar</Button>
                   </td>
                 </tr>
               ))}
