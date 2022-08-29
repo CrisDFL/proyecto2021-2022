@@ -1,5 +1,6 @@
+import { async } from '@firebase/util';
 import {
-  addDoc, collection, deleteDoc, doc, getDocs,
+  addDoc, collection, deleteDoc, doc, getDocs, updateDoc,
 } from 'firebase/firestore';
 import { FC, useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
@@ -10,12 +11,16 @@ import { db } from '../../../../../utils/firebase';
 const MySwal = withReactContent(Swal);
 
 const Proveedores: FC = () => {
+  // 1. Hooks
   const [nombre, setNombre] = useState('');
   const [nit, setNit] = useState('');
   const [telCel, setTelCel] = useState('');
   const [correo, setCorreo] = useState('');
-  const [proveedores, setProveedores] = useState([]);
+  const [proveedores, setProveedores] = useState<any>([]);
+  const [edicion, setEdicion] = useState(false);
+  const [edicionId, setEdicionId] = useState('');
 
+  // 2. Funcion Agregar
   const agregar = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
@@ -46,6 +51,7 @@ const Proveedores: FC = () => {
     setCorreo('');
   };
 
+  // 3. Funcion Mostrar Datos
   const getDatos = async () => {
     const data = await getDocs(collection(db, 'proveedor'));
     //   console.log(data.docs);
@@ -60,6 +66,7 @@ const Proveedores: FC = () => {
     getDatos();
   }, []);
 
+  // 4. Funcion Eliminar
   const eliminar = async (id: string) => {
     await deleteDoc(doc(db, 'proveedor', id));
     getDatos();
@@ -85,6 +92,48 @@ const Proveedores: FC = () => {
     });
   };
 
+  // 5. Boton Editar
+  const activarEdicion = (item: any) => {
+    setEdicion(true);
+    setNombre(item.nom_pro);
+    setNit(item.nit_pro);
+    setTelCel(item.telCel_pro);
+    setCorreo(item.correo_pro);
+    setEdicionId(item.id);
+  };
+
+  // 6. Funcion Editar
+  const editar = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if (!nombre.trim()) {
+      console.log('No hay datos');
+      return;
+    }
+
+    try {
+      await updateDoc(doc(db, 'proveedor', edicionId), {
+        nom_pro: nombre,
+        nit_pro: nit,
+        telCel_pro: telCel,
+        correo_pro: correo,
+      });
+      const arrayEditar = proveedores.map((item: any) => (
+        item.id === edicionId ? {
+          id: item.id, nom_pro: nombre, nit_pro: nit, telCel_pro: telCel, correo_pro: correo,
+        } : item
+      ));
+      setProveedores(arrayEditar);
+      setEdicion(false);
+      setNombre('');
+      setNit('');
+      setTelCel('');
+      setCorreo('');
+      setEdicionId('');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="container">
         <h1 className="text-center mt-3">CRUD PROVEEDORES</h1>
@@ -96,22 +145,32 @@ const Proveedores: FC = () => {
                     <tr>
                         <th>Nombre</th>
                         <th>Nit</th>
-                        <th>tel/Cel</th>
+                        <th>Tel/Cel</th>
                         <th>Correo</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
                         {
-                            proveedores.map((item) => (
+                            proveedores.map((item: any) => (
                                 <tr key={item.id}>
                                     <td>{item.nom_pro}</td>
                                     <td>{item.nit_pro}</td>
                                     <td>{item.telCel_pro}</td>
                                     <td>{item.correo_pro}</td>
                                     <td>
-                                        <Button className="btn btn-warning btn-small float-right">Editar</Button>
-                                        <Button className="btn btn-danger btn-small float-rigth mx-2" onClick={() => confirmDelete(item.id)}>Borrar</Button>
+                                        <Button
+                                          className="btn btn-warning btn-small float-right"
+                                          onClick={() => activarEdicion(item)}
+                                        >
+                                          Editar
+                                        </Button>
+                                        <Button
+                                          className="btn btn-danger btn-small float-rigth mx-2"
+                                          onClick={() => confirmDelete(item.id)}
+                                        >
+                                          Borrar
+                                        </Button>
                                     </td>
                                 </tr>
                             ))
@@ -120,8 +179,8 @@ const Proveedores: FC = () => {
                 </table>
             </div>
             <div className="col-4">
-                <h4 className="text-center">Formulario</h4>
-                <form onSubmit={agregar}>
+                <h4 className="text-center">{edicion ? 'Editar' : 'Agregar'}</h4>
+                <form onSubmit={edicion ? editar : agregar}>
                     <input
                         type="text"
                         className="form-control mb-2"
@@ -150,7 +209,14 @@ const Proveedores: FC = () => {
                         onChange={(e) => setCorreo(e.target.value)}
                         value={correo}
                     />
-                    <Button className="btn btn-dark btn-block">Agregar</Button>
+                    <Button className={
+                      edicion
+                        ? 'btn btn-warning btn-block'
+                        : 'btn btn-dark btn-block'
+                      }
+                    >
+                      {edicion ? 'Editar' : 'Agregar'}
+                    </Button>
                 </form>
             </div>
         </div>

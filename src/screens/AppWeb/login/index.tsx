@@ -18,7 +18,7 @@ const Login: FC = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { user } = userCredential;
-        navigate('/Main');
+        navigate('/Crud');
         const Toast = MySwal.mixin({
           toast: true,
           position: 'top-end',
