@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { db } from '../../../../../utils/firebase';
+import Sidebar from '../../dashboard';
 
 const MySwal = withReactContent(Swal);
 
@@ -135,92 +136,87 @@ const Proveedores: FC = () => {
   };
 
   return (
-    <div className="container">
-        <h1 className="text-center mt-3">CRUD PROVEEDORES</h1>
-        <hr />
-        <div className="row">
-            <div className="col-8">
-                <table className="table table-dark table-hover">
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Nit</th>
-                        <th>Tel/Cel</th>
-                        <th>Correo</th>
-                        <th>Acciones</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            proveedores.map((item: any) => (
-                                <tr key={item.id}>
-                                    <td>{item.nom_pro}</td>
-                                    <td>{item.nit_pro}</td>
-                                    <td>{item.telCel_pro}</td>
-                                    <td>{item.correo_pro}</td>
-                                    <td>
-                                        <Button
-                                          className="btn btn-warning btn-small float-right"
-                                          onClick={() => activarEdicion(item)}
-                                        >
-                                          Editar
-                                        </Button>
-                                        <Button
-                                          className="btn btn-danger btn-small float-rigth mx-2"
-                                          onClick={() => confirmDelete(item.id)}
-                                        >
-                                          Borrar
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div className="col-4">
-                <h4 className="text-center">{edicion ? 'Editar' : 'Agregar'}</h4>
-                <form onSubmit={edicion ? editar : agregar}>
-                    <input
-                        type="text"
-                        className="form-control mb-2"
-                        placeholder="Nombre del Proveedor"
-                        onChange={(e) => setNombre(e.target.value)}
-                        value={nombre}
-                    />
-                    <input
-                        type="text"
-                        className="form-control mb-2"
-                        placeholder="Nit del Proveedor"
-                        onChange={(e) => setNit(e.target.value)}
-                        value={nit}
-                    />
-                    <input
-                        type="text"
-                        className="form-control mb-2"
-                        placeholder="Tel/Cel del Proveedor"
-                        onChange={(e) => setTelCel(e.target.value)}
-                        value={telCel}
-                    />
-                    <input
-                        type="text"
-                        className="form-control mb-2"
-                        placeholder="Correo del Proveedor"
-                        onChange={(e) => setCorreo(e.target.value)}
-                        value={correo}
-                    />
-                    <Button className={
-                      edicion
-                        ? 'btn btn-warning btn-block'
-                        : 'btn btn-dark btn-block'
-                      }
+    <>
+      <Sidebar />
+      <div className="container">
+      <h1 className="text-center mt-3">CRUD PROVEEDORES</h1>
+      <hr />
+      <div className="row">
+        <div className="col-8">
+          <table className="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Nit</th>
+                <th>Tel/Cel</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {proveedores.map((item: any) => (
+                <tr key={item.id}>
+                  <td>{item.nom_pro}</td>
+                  <td>{item.nit_pro}</td>
+                  <td>{item.telCel_pro}</td>
+                  <td>{item.correo_pro}</td>
+                  <td>
+                    <Button
+                      className="btn btn-warning btn-small float-right"
+                      onClick={() => activarEdicion(item)}
                     >
-                      {edicion ? 'Editar' : 'Agregar'}
+                      Editar
                     </Button>
-                </form>
-            </div>
+                    <Button
+                      className="btn btn-danger btn-small float-rigth mx-2"
+                      onClick={() => confirmDelete(item.id)}
+                    >
+                      Borrar
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+        <div className="col-4">
+          <h4 className="text-center">{edicion ? 'Editar' : 'Agregar'}</h4>
+          <form onSubmit={edicion ? editar : agregar}>
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Nombre del Proveedor"
+              onChange={(e) => setNombre(e.target.value)}
+              value={nombre} />
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Nit del Proveedor"
+              onChange={(e) => setNit(e.target.value)}
+              value={nit} />
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Tel/Cel del Proveedor"
+              onChange={(e) => setTelCel(e.target.value)}
+              value={telCel} />
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Correo del Proveedor"
+              onChange={(e) => setCorreo(e.target.value)}
+              value={correo} />
+            <Button className={edicion
+              ? 'btn btn-warning btn-block'
+              : 'btn btn-dark btn-block'}
+            >
+              {edicion ? 'Editar' : 'Agregar'}
+            </Button>
+          </form>
+        </div>
+      </div>
     </div>
+    </>
   );
 };
 
