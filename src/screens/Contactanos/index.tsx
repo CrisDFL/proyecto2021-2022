@@ -5,7 +5,7 @@ import Nav from '../../common/components/Nav';
 import './style.css';
 
 const Contactanos: FC = () => (
-  <>
+  <div className="contactanosContainer">
     <Nav />
     <Header />
     <div className="containerContactanos">
@@ -55,7 +55,7 @@ const Contactanos: FC = () => (
       </form>
     </div>
     <Footer />
-  </>
+  </div>
 );
 
 export default Contactanos;

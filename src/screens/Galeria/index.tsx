@@ -5,7 +5,7 @@ import Nav from '../../common/components/Nav';
 import './style.css';
 
 const Galeria: FC = () => (
-  <>
+  <div className="containerGaleria">
     <Nav />
     <Header />
     <div className="gallery-container">
@@ -41,7 +41,7 @@ const Galeria: FC = () => (
             </div>
     </div >
     <Footer />
-  </>
+  </div>
 );
 
 export default Galeria;

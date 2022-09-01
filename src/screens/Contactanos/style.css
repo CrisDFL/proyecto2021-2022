@@ -1,3 +1,6 @@
+.contactanosContainer {
+  background-color: var(--black);
+}
 .containerContactanos {
   padding: 10px 0;
 }

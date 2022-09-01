@@ -1,3 +1,6 @@
+.containerGaleria {
+  background-color: var(--black);
+}
 #galeria{
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;

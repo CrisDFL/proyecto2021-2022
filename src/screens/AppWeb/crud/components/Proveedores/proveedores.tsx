@@ -137,6 +137,7 @@ const Proveedores: FC = () => {
 
   return (
     <>
+      <div className="headerProveedores bg-dark"></div>
       <Sidebar />
       <div className="container">
       <h1 className="text-center mt-3">CRUD PROVEEDORES</h1>
