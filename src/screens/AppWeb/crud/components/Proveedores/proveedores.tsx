@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import {
   addDoc, collection, deleteDoc, doc, getDocs, updateDoc,
 } from 'firebase/firestore';
@@ -24,9 +23,13 @@ const Proveedores: FC = () => {
   // 2. Funcion Agregar
   const agregar = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-
-    if (!nombre.trim()) {
-    //   console.log('Esta vacio');
+    if (!nombre.trim() || !nit.trim() || !telCel.trim() || !correo.trim()) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Faltan los datos: ${!nombre.trim() ? '- Nombre' : ''} ${!nit.trim() ? '- Nit' : ''} ${!telCel.trim() ? '- Tel/Cel' : ''} ${!correo.trim() ? '- Correo' : ''}`,
+      });
+      return;
     }
     try {
       const data = await addDoc(collection(db, 'proveedor'), {
@@ -38,11 +41,13 @@ const Proveedores: FC = () => {
       setProveedores([
         ...proveedores,
         {
-          id: data.id,
+          nom_pro: nombre,
+          nit_pro: nit,
+          telCel_pro: telCel,
+          correo_pro: correo,
           ...data,
         },
       ]);
-      console.log(setProveedores);
     } catch (error) {
     //   console.log(error);
     }
@@ -190,11 +195,12 @@ const Proveedores: FC = () => {
               onChange={(e) => setNombre(e.target.value)}
               value={nombre} />
             <input
-              type="text"
+              type="number"
               className="form-control mb-2"
               placeholder="Nit del Proveedor"
               onChange={(e) => setNit(e.target.value)}
-              value={nit} />
+              value={nit}
+              />
             <input
               type="text"
               className="form-control mb-2"
@@ -202,7 +208,7 @@ const Proveedores: FC = () => {
               onChange={(e) => setTelCel(e.target.value)}
               value={telCel} />
             <input
-              type="text"
+              type="email"
               className="form-control mb-2"
               placeholder="Correo del Proveedor"
               onChange={(e) => setCorreo(e.target.value)}

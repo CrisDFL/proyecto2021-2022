@@ -25,7 +25,6 @@ module.exports = {
     'import/no-unresolved': 0,
     'react/jsx-props-no-spreading': 0,
     'no-console': 1,
-    complexity: ['error', 7],
     'react/jsx-closing-bracket-location': 0,
     'react/jsx-closing-tag-location': 0,
     'react/jsx-curly-spacing': 0,
