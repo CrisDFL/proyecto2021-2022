@@ -15,29 +15,32 @@ const Login: FC = () => {
   const MySwal = withReactContent(Swal);
   const auth = getAuth();
   const iniciar = () => {
+    const Toast = MySwal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { user } = userCredential;
-        navigate('/Crud');
-        const Toast = MySwal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 2000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          },
-        });
+        navigate('/Crud/Proveedores');
 
         Toast.fire({
           icon: 'success',
           title: 'Inicio de sesión éxitoso!',
         });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        Toast.fire({
+          icon: 'error',
+          title: 'Datos Erroneos',
+        });
       });
   };
 

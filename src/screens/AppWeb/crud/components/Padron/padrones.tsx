@@ -13,54 +13,68 @@ const MySwal = withReactContent(Swal);
 const Padrones: FC = () => {
   // 1. Hooks
   const [nombre, setNombre] = useState('');
-  const [nit, setNit] = useState('');
-  const [telCel, setTelCel] = useState('');
-  const [correo, setCorreo] = useState('');
-  const [proveedores, setProveedores] = useState<any>([]);
+  const [nomPro, setNomPro] = useState('');
+  const [genero, setGenero] = useState('');
+  const [fechaNa, setFechaNa] = useState('');
+  const [fechaVac, setFechaVac] = useState('');
+  const [fechaDesp, setFechaDesp] = useState('');
+  const [padrones, setPadrones] = useState<any>([]);
   const [edicion, setEdicion] = useState(false);
   const [edicionId, setEdicionId] = useState('');
 
   // 2. Funcion Agregar
   const agregar = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-
-    if (!nombre.trim()) {
-      //   console.log('Esta vacio');
+    if (!nombre.trim() || !nomPro.trim() || !genero.trim() || !fechaNa.trim() || !fechaVac.trim() || !fechaDesp.trim()) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `Faltan los datos: ${!nombre.trim() ? '- Nombre Padron' : ''} ${!nomPro.trim() ? '- Nombre Proveedor' : ''}  ${!genero.trim() ? '- Genero' : ''} ${!fechaNa.trim() ? '- Fecha de Nacimiento' : ''} ${!fechaVac.trim() ? '- Fecha de Vacunacion' : ''} ${!fechaDesp.trim() ? '- Fecha de Desparacitacion' : ''}`,
+      });
+      return;
     }
     try {
-      const data = await addDoc(collection(db, 'proveedor'), {
-        nom_pro: nombre,
-        nit_pro: nit,
-        telCel_pro: telCel,
-        correo_pro: correo,
+      const data = await addDoc(collection(db, 'padron'), {
+        nom_pa: nombre,
+        nom_pro: nomPro,
+        genero_pa: genero,
+        fechaNa_pa: fechaNa,
+        fechaVac_pa: fechaVac,
+        fechaDesp_pa: fechaDesp,
       });
-        // setProveedores([
-        //   ...proveedores,
-        //   {
-        //     id: data.id,
-        //     ...data,
-        //   },
-        // ]);
-      console.log(setProveedores);
+      setPadrones([
+        ...padrones,
+        {
+          nom_pa: nombre,
+          nom_pro: nomPro,
+          genero,
+          fechaNa_pa: fechaNa,
+          fechaVac_pa: fechaVac,
+          fechaDesp_pa: fechaDesp,
+          ...data,
+        },
+      ]);
     } catch (error) {
-      //   console.log(error);
+    //   console.log(error);
     }
     setNombre('');
-    setNit('');
-    setTelCel('');
-    setCorreo('');
+    setNomPro('');
+    setGenero('');
+    setFechaNa('');
+    setFechaVac('');
+    setFechaDesp('');
   };
 
   // 3. Funcion Mostrar Datos
   const getDatos = async () => {
-    const data = await getDocs(collection(db, 'proveedor'));
+    const data = await getDocs(collection(db, 'padron'));
     //   console.log(data.docs);
     const arrayData = data.docs.map((docData) => ({
       id: docData.id,
       ...docData.data(),
     }));
-      //   console.log(arrayData);
-    setProveedores(arrayData);
+    //   console.log(arrayData);
+    setPadrones(arrayData);
   };
   useEffect(() => {
     getDatos();
@@ -68,7 +82,7 @@ const Padrones: FC = () => {
 
   // 4. Funcion Eliminar
   const eliminar = async (id: string) => {
-    await deleteDoc(doc(db, 'proveedor', id));
+    await deleteDoc(doc(db, 'padron', id));
     getDatos();
   };
   const confirmDelete = (id: string) => {
@@ -95,10 +109,12 @@ const Padrones: FC = () => {
   // 5. Boton Editar
   const activarEdicion = (item: any) => {
     setEdicion(true);
-    setNombre(item.nom_pro);
-    setNit(item.nit_pro);
-    setTelCel(item.telCel_pro);
-    setCorreo(item.correo_pro);
+    setNombre(item.nom_pa);
+    setNomPro(item.nom_pro);
+    setGenero(item.genero_pa);
+    setFechaNa(item.fechaNa_pa);
+    setFechaVac(item.fechaVac_pa);
+    setFechaDesp(item.fechaDesp_pa);
     setEdicionId(item.id);
   };
 
@@ -111,23 +127,27 @@ const Padrones: FC = () => {
     }
 
     try {
-      await updateDoc(doc(db, 'proveedor', edicionId), {
-        nom_pro: nombre,
-        nit_pro: nit,
-        telCel_pro: telCel,
-        correo_pro: correo,
+      await updateDoc(doc(db, 'padron', edicionId), {
+        nom_pa: nombre,
+        nom_pro: nomPro,
+        genero_pa: genero,
+        fechaNa_pa: fechaNa,
+        fechaVac_pa: fechaVac,
+        fechaDesp_pa: fechaDesp,
       });
-      const arrayEditar = proveedores.map((item: any) => (
+      const arrayEditar = padrones.map((item: any) => (
         item.id === edicionId ? {
-          id: item.id, nom_pro: nombre, nit_pro: nit, telCel_pro: telCel, correo_pro: correo,
+          id: item.id, nom_pa: nombre, nom_pro: nomPro, genero_pa: genero, fechaNa_pa: fechaNa, fechaVac_pa: fechaVac, fechaDesp_pa: fechaDesp,
         } : item
       ));
-      setProveedores(arrayEditar);
+      setPadrones(arrayEditar);
       setEdicion(false);
       setNombre('');
-      setNit('');
-      setTelCel('');
-      setCorreo('');
+      setNomPro('');
+      setGenero('');
+      setFechaNa('');
+      setFechaVac('');
+      setFechaDesp('');
       setEdicionId('');
     } catch (error) {
       console.log(error);
@@ -135,88 +155,108 @@ const Padrones: FC = () => {
   };
 
   return (
-      <>
-        <div className="headerProveedores bg-dark"></div>
-        <Sidebar />
-        <div className="container">
-        <h1 className="text-center mt-3">CRUD PROVEEDORES</h1>
-        <hr />
-        <div className="row">
-          <div className="col-8">
-            <table className="table table-dark table-hover">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Nit</th>
-                  <th>Tel/Cel</th>
-                  <th>Correo</th>
-                  <th>Acciones</th>
+    <>
+      <div className="headerProveedores bg-dark"></div>
+      <Sidebar />
+      <div className="container">
+      <h1 className="text-center mt-3">CRUD PADRONES</h1>
+      <hr />
+      <div className="row">
+        <div className="col-8">
+          <table className="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Nombre Proveedor</th>
+                <th>Genero</th>
+                <th>Fecha Nacimiento</th>
+                <th>Fecha Vacunacion</th>
+                <th>Fecha Desparacitacion</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {padrones.map((item: any) => (
+                <tr key={item.id}>
+                  <td>{item.nom_pa}</td>
+                  <td>{item.nom_pro}</td>
+                  <td>{item.genero_pa}</td>
+                  <td>{item.fechaNa_pa}</td>
+                  <td>{item.fechaVac_pa}</td>
+                  <td>{item.fechaDesp_pa}</td>
+                  <td>
+                    <Button
+                      className="btn btn-warning btn-small float-right"
+                      onClick={() => activarEdicion(item)}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      className="btn btn-danger btn-small float-rigth mx-2"
+                      onClick={() => confirmDelete(item.id)}
+                    >
+                      Borrar
+                    </Button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {proveedores.map((item: any) => (
-                  <tr key={item.id}>
-                    <td>{item.nom_pro}</td>
-                    <td>{item.nit_pro}</td>
-                    <td>{item.telCel_pro}</td>
-                    <td>{item.correo_pro}</td>
-                    <td>
-                      <Button
-                        className="btn btn-warning btn-small float-right"
-                        onClick={() => activarEdicion(item)}
-                      >
-                        Editar
-                      </Button>
-                      <Button
-                        className="btn btn-danger btn-small float-rigth mx-2"
-                        onClick={() => confirmDelete(item.id)}
-                      >
-                        Borrar
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="col-4">
-            <h4 className="text-center">{edicion ? 'Editar' : 'Agregar'}</h4>
-            <form onSubmit={edicion ? editar : agregar}>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="col-4">
+          <h4 className="text-center"><b>{edicion ? 'Editar' : 'Agregar'}</b></h4>
+          <form onSubmit={edicion ? editar : agregar}>
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Nombre del Padron"
+              onChange={(e) => setNombre(e.target.value)}
+              value={nombre}
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus />
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Nombre del Proveedor"
+              onChange={(e) => setNomPro(e.target.value)}
+              value={nomPro}
+              min={0}
+              />
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Genero del Padron"
+              onChange={(e) => setGenero(e.target.value)}
+              value={genero} />
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Fecha de Nacimiento"
+              onChange={(e) => setFechaNa(e.target.value)}
+              value={fechaNa} />
               <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Nombre del Proveedor"
-                onChange={(e) => setNombre(e.target.value)}
-                value={nombre} />
+              type="text"
+              className="form-control mb-2"
+              placeholder="Fecha de Vacunacion"
+              onChange={(e) => setFechaVac(e.target.value)}
+              value={fechaVac} />
               <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Nit del Proveedor"
-                onChange={(e) => setNit(e.target.value)}
-                value={nit} />
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Tel/Cel del Proveedor"
-                onChange={(e) => setTelCel(e.target.value)}
-                value={telCel} />
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Correo del Proveedor"
-                onChange={(e) => setCorreo(e.target.value)}
-                value={correo} />
-              <Button className={edicion
-                ? 'btn btn-warning btn-block'
-                : 'btn btn-dark btn-block'}
-              >
-                {edicion ? 'Editar' : 'Agregar'}
-              </Button>
-            </form>
-          </div>
+              type="text"
+              className="form-control mb-2"
+              placeholder="Fecha de Desparacitacion"
+              onChange={(e) => setFechaDesp(e.target.value)}
+              value={fechaDesp} />
+            <Button className={edicion
+              ? 'btn btn-warning btn-block'
+              : 'btn btn-dark btn-block'}
+            >
+              {edicion ? 'Editar' : 'Agregar'}
+            </Button>
+          </form>
         </div>
       </div>
-      </>
+    </div>
+    </>
   );
 };
 

@@ -33,13 +33,13 @@ const Sidebar: FC = () => (
                         Manejo de Proveedores
                     </p>
                     <li>
-                        <a href=".">
+                        <a href="./Proveedores">
                             <InventoryIcon />
                             Proveedores
                         </a>
                     </li>
                     <li>
-                        <a href=".">
+                        <a href="./Padrones">
                             <PetsIcon />
                             Compras Gerencia
                         </a>

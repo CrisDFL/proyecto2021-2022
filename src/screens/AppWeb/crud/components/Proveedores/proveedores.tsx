@@ -193,7 +193,9 @@ const Proveedores: FC = () => {
               className="form-control mb-2"
               placeholder="Nombre del Proveedor"
               onChange={(e) => setNombre(e.target.value)}
-              value={nombre} />
+              value={nombre}
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus />
             <input
               type="number"
               className="form-control mb-2"

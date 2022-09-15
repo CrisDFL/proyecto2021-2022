@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Padrones from '../screens/AppWeb/crud/components/Padron/padrones';
 import Proveedores from '../screens/AppWeb/crud/components/Proveedores/proveedores';
 import Sidebar from '../screens/AppWeb/crud/dashboard';
 import Login from '../screens/AppWeb/login';
@@ -15,7 +16,8 @@ const Router: FC = () => (
       <Route path="/Contactanos" element={<Contactanos />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Main" element={<Sidebar />} />
-      <Route path="/Crud" element={<Proveedores />} />
+      <Route path="/Crud/Proveedores" element={<Proveedores />} />
+      <Route path="/Crud/Padrones" element={<Padrones />} />
     </Routes>
   </BrowserRouter>
 );
