@@ -186,7 +186,7 @@ const Proveedores: FC = () => {
           </table>
         </div>
         <div className="col-4">
-          <h4 className="text-center">{edicion ? 'Editar' : 'Agregar'}</h4>
+          <h4 className="text-center"><b>{edicion ? 'Editar' : 'Agregar'}</b></h4>
           <form onSubmit={edicion ? editar : agregar}>
             <input
               type="text"
@@ -198,8 +198,9 @@ const Proveedores: FC = () => {
               type="number"
               className="form-control mb-2"
               placeholder="Nit del Proveedor"
-              onChange={(e) => setNit(e.target.value)}
+              onChange={(e) => setNit(e.target.value.slice(0, 9))}
               value={nit}
+              min={0}
               />
             <input
               type="text"
