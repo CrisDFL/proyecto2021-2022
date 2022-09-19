@@ -1,4 +1,7 @@
 import {
+  FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent, TextField,
+} from '@mui/material';
+import {
   addDoc, collection, deleteDoc, doc, getDocs, updateDoc,
 } from 'firebase/firestore';
 import { FC, useEffect, useState } from 'react';
@@ -47,7 +50,7 @@ const Padrones: FC = () => {
         {
           nom_pa: nombre,
           nom_pro: nomPro,
-          genero,
+          genero_pa: genero,
           fechaNa_pa: fechaNa,
           fechaVac_pa: fechaVac,
           fechaDesp_pa: fechaDesp,
@@ -154,6 +157,10 @@ const Padrones: FC = () => {
     }
   };
 
+  const handleChange = (event: SelectChangeEvent) => {
+    setGenero(event.target.value);
+  };
+
   return (
     <>
       <div className="headerProveedores bg-dark"></div>
@@ -169,9 +176,9 @@ const Padrones: FC = () => {
                 <th>Nombre</th>
                 <th>Nombre Proveedor</th>
                 <th>Genero</th>
-                <th>Fecha Nacimiento</th>
-                <th>Fecha Vacunacion</th>
-                <th>Fecha Desparacitacion</th>
+                <th>Fecha Na.</th>
+                <th>Fecha Vac.</th>
+                <th>Fecha Desp.</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -206,46 +213,76 @@ const Padrones: FC = () => {
         <div className="col-4">
           <h4 className="text-center"><b>{edicion ? 'Editar' : 'Agregar'}</b></h4>
           <form onSubmit={edicion ? editar : agregar}>
-            <input
-              type="text"
+            <TextField id="outlined-basic" label="Nombre del Padron" variant="outlined"
               className="form-control mb-2"
               placeholder="Nombre del Padron"
               onChange={(e) => setNombre(e.target.value)}
               value={nombre}
-              // eslint-disable-next-line jsx-a11y/no-autofocus
-              autoFocus />
-            <input
-              type="text"
+              autoFocus
+            />
+            <TextField id="outlined-basic" label="Nombre del Proveedor" variant="outlined"
               className="form-control mb-2"
               placeholder="Nombre del Proveedor"
               onChange={(e) => setNomPro(e.target.value)}
               value={nomPro}
-              min={0}
-              />
-            <input
-              type="text"
+            />
+            <FormControl variant="outlined" sx={{ minWidth: '100%' }}>
+            <InputLabel id="demo-simple-select-filled-label">Genero</InputLabel>
+              <Select
+                labelId="demo-simple-select-filled-label"
+                placeholder="Genero"
+                id="demo-simple-select-filled"
+                value={genero}
+                onChange={handleChange}
+                label="Genero"
+                className="mb-2"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value="Macho">Macho</MenuItem>
+                <MenuItem value="Hembra">Hembra</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              label="Fecha de Nacimiento"
+              type="date"
+              sx={{ width: '100%' }}
+              InputLabelProps={{
+                shrink: true,
+              }}
               className="form-control mb-2"
-              placeholder="Genero del Padron"
-              onChange={(e) => setGenero(e.target.value)}
-              value={genero} />
-            <input
-              type="text"
-              className="form-control mb-2"
-              placeholder="Fecha de Nacimiento"
               onChange={(e) => setFechaNa(e.target.value)}
-              value={fechaNa} />
-              <input
-              type="text"
+              value={fechaNa}
+            />
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              label="Fecha de Vacunacion"
+              type="date"
+              sx={{ width: '100%' }}
+              InputLabelProps={{
+                shrink: true,
+              }}
               className="form-control mb-2"
-              placeholder="Fecha de Vacunacion"
               onChange={(e) => setFechaVac(e.target.value)}
-              value={fechaVac} />
-              <input
-              type="text"
+              value={fechaVac}
+            />
+            <TextField
+              id="outlined-basic"
+              variant="outlined"
+              label="Fecha de Desparacitacion"
+              type="date"
+              sx={{ width: '100%' }}
+              InputLabelProps={{
+                shrink: true,
+              }}
               className="form-control mb-2"
-              placeholder="Fecha de Desparacitacion"
               onChange={(e) => setFechaDesp(e.target.value)}
-              value={fechaDesp} />
+              value={fechaDesp}
+            />
             <Button className={edicion
               ? 'btn btn-warning btn-block'
               : 'btn btn-dark btn-block'}
