@@ -29,7 +29,7 @@ const Login: FC = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const { user } = userCredential;
-        navigate('/Crud/Proveedores');
+        navigate('/Crud/Crias');
 
         Toast.fire({
           icon: 'success',

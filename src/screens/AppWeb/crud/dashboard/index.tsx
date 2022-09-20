@@ -21,7 +21,7 @@ const Sidebar: FC = () => (
             <ul className="contentSidebar">
                 <div className="gestionCrias">
                     <li>
-                        <a href=".">
+                        <a href="./Crias">
                             <HomeIcon />
                             Gestion de Crias
                         </a>
@@ -48,19 +48,19 @@ const Sidebar: FC = () => (
                 <div className="manejoCompras">
                     <p className="subtitleProveedores">Manejo de Compras</p>
                     <li>
-                        <a href=".">
+                        <a href="./Clientes">
                             <PeopleAltIcon />
                             Control de Clientes
                         </a>
                     </li>
                     <li>
-                        <a href=".">
+                        <a href="./Responsables">
                             <VolunteerActivismIcon />
                             Control de Responsables
                         </a>
                     </li>
                     <li>
-                        <a href=".">
+                        <a href="./Ventas">
                             <ShoppingCartIcon />
                             Ventas
                         </a>

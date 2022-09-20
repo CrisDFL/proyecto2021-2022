@@ -13,53 +13,57 @@ import Sidebar from '../../dashboard';
 
 const MySwal = withReactContent(Swal);
 
-const Padrones: FC = () => {
+const Crias: FC = () => {
   // 1. Hooks
   const [nombre, setNombre] = useState('');
-  const [nomPro, setNomPro] = useState('');
+  const [nomPa, setNomPa] = useState('');
   const [genero, setGenero] = useState('');
   const [fechaNa, setFechaNa] = useState('');
   const [fechaVac, setFechaVac] = useState('');
   const [fechaDesp, setFechaDesp] = useState('');
-  const [padrones, setPadrones] = useState<any>([]);
+  const [peso, setPeso] = useState('');
+  const [crias, setCrias] = useState<any>([]);
   const [edicion, setEdicion] = useState(false);
   const [edicionId, setEdicionId] = useState('');
 
   // 2. Funcion Agregar
   const agregar = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    if (!nombre.trim() || !nomPro.trim() || !genero.trim() || !fechaNa.trim() || !fechaVac.trim() || !fechaDesp.trim()) {
+    if (!nombre.trim() || !nomPa.trim() || !genero.trim() || !fechaNa.trim() || !fechaVac.trim() || !fechaDesp.trim() || !peso.trim()) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: `Faltan los datos: ${!nombre.trim()
-          ? '- Nombre Padron' : ''} ${!nomPro.trim()
+          ? '- Nombre Cria' : ''} ${!nomPa.trim()
           ? '- Nombre Proveedor' : ''}  ${!genero.trim()
           ? '- Genero' : ''} ${!fechaNa.trim()
           ? '- Fecha de Nacimiento' : ''} ${!fechaVac.trim()
           ? '- Fecha de Vacunacion' : ''} ${!fechaDesp.trim()
-          ? '- Fecha de Desparacitacion' : ''}`,
+          ? '- Fecha de Desparacitacion' : ''} ${!peso.trim()
+          ? '- Peso' : ''}`,
       });
       return;
     }
     try {
-      const data = await addDoc(collection(db, 'padron'), {
-        nom_pa: nombre,
-        nom_pro: nomPro,
-        genero_pa: genero,
-        fechaNa_pa: fechaNa,
-        fechaVac_pa: fechaVac,
-        fechaDesp_pa: fechaDesp,
+      const data = await addDoc(collection(db, 'cria'), {
+        nom_cria: nombre,
+        nom_pa: nomPa,
+        genero_cria: genero,
+        fechaNa_cria: fechaNa,
+        fechaVac_cria: fechaVac,
+        fechaDesp_cria: fechaDesp,
+        peso_cria: peso,
       });
-      setPadrones([
-        ...padrones,
+      setCrias([
+        ...crias,
         {
-          nom_pa: nombre,
-          nom_pro: nomPro,
-          genero_pa: genero,
-          fechaNa_pa: fechaNa,
-          fechaVac_pa: fechaVac,
-          fechaDesp_pa: fechaDesp,
+          nom_cria: nombre,
+          nom_pa: nomPa,
+          genero_cria: genero,
+          fechaNa_cria: fechaNa,
+          fechaVac_cria: fechaVac,
+          fechaDesp_cria: fechaDesp,
+          peso_cria: peso,
           ...data,
         },
       ]);
@@ -67,23 +71,24 @@ const Padrones: FC = () => {
     //   console.log(error);
     }
     setNombre('');
-    setNomPro('');
+    setNomPa('');
     setGenero('');
     setFechaNa('');
     setFechaVac('');
     setFechaDesp('');
+    setPeso('');
   };
 
   // 3. Funcion Mostrar Datos
   const getDatos = async () => {
-    const data = await getDocs(collection(db, 'padron'));
+    const data = await getDocs(collection(db, 'cria'));
     //   console.log(data.docs);
     const arrayData = data.docs.map((docData) => ({
       id: docData.id,
       ...docData.data(),
     }));
     //   console.log(arrayData);
-    setPadrones(arrayData);
+    setCrias(arrayData);
   };
   useEffect(() => {
     getDatos();
@@ -91,7 +96,7 @@ const Padrones: FC = () => {
 
   // 4. Funcion Eliminar
   const eliminar = async (id: string) => {
-    await deleteDoc(doc(db, 'padron', id));
+    await deleteDoc(doc(db, 'cria', id));
     getDatos();
   };
   const confirmDelete = (id: string) => {
@@ -118,12 +123,13 @@ const Padrones: FC = () => {
   // 5. Boton Editar
   const activarEdicion = (item: any) => {
     setEdicion(true);
-    setNombre(item.nom_pa);
-    setNomPro(item.nom_pro);
-    setGenero(item.genero_pa);
-    setFechaNa(item.fechaNa_pa);
-    setFechaVac(item.fechaVac_pa);
-    setFechaDesp(item.fechaDesp_pa);
+    setNombre(item.nom_cria);
+    setNomPa(item.nom_pa);
+    setGenero(item.genero_cria);
+    setFechaNa(item.fechaNa_cria);
+    setFechaVac(item.fechaVac_cria);
+    setFechaDesp(item.fechaDesp_cria);
+    setPeso(item.peso_cria);
     setEdicionId(item.id);
   };
 
@@ -132,33 +138,36 @@ const Padrones: FC = () => {
     e.preventDefault();
 
     try {
-      await updateDoc(doc(db, 'padron', edicionId), {
-        nom_pa: nombre,
-        nom_pro: nomPro,
-        genero_pa: genero,
-        fechaNa_pa: fechaNa,
-        fechaVac_pa: fechaVac,
-        fechaDesp_pa: fechaDesp,
+      await updateDoc(doc(db, 'cria', edicionId), {
+        nom_cria: nombre,
+        nom_pa: nomPa,
+        genero_cria: genero,
+        fechaNa_cria: fechaNa,
+        fechaVac_cria: fechaVac,
+        fechaDesp_cria: fechaDesp,
+        peso_cria: peso,
       });
-      const arrayEditar = padrones.map((item: any) => (
+      const arrayEditar = crias.map((item: any) => (
         item.id === edicionId ? {
           id: item.id,
-          nom_pa: nombre,
-          nom_pro: nomPro,
-          genero_pa: genero,
-          fechaNa_pa: fechaNa,
-          fechaVac_pa: fechaVac,
-          fechaDesp_pa: fechaDesp,
+          nom_cria: nombre,
+          nom_pa: nomPa,
+          genero_cria: genero,
+          fechaNa_cria: fechaNa,
+          fechaVac_cria: fechaVac,
+          fechaDesp_cria: fechaDesp,
+          peso_cria: peso,
         } : item
       ));
-      setPadrones(arrayEditar);
+      setCrias(arrayEditar);
       setEdicion(false);
       setNombre('');
-      setNomPro('');
+      setNomPa('');
       setGenero('');
       setFechaNa('');
       setFechaVac('');
       setFechaDesp('');
+      setPeso('');
       setEdicionId('');
     } catch (error) {
       console.log(error);
@@ -174,7 +183,7 @@ const Padrones: FC = () => {
       <div className="headerProveedores bg-dark"></div>
       <Sidebar />
       <div className="container">
-      <h1 className="text-center mt-3">COMPRAS GERENCIA</h1>
+      <h1 className="text-center mt-3">GESTION DE CRIAS</h1>
       <hr />
       <div className="row">
         <div className="col-8">
@@ -182,23 +191,25 @@ const Padrones: FC = () => {
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Nombre Proveedor</th>
+                <th>Nombre Padron</th>
                 <th>Genero</th>
                 <th>Fecha Na.</th>
                 <th>Fecha Vac.</th>
                 <th>Fecha Desp.</th>
+                <th>Peso</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {padrones.map((item: any) => (
+              {crias.map((item: any) => (
                 <tr key={item.id}>
+                  <td>{item.nom_cria}</td>
                   <td>{item.nom_pa}</td>
-                  <td>{item.nom_pro}</td>
-                  <td>{item.genero_pa}</td>
-                  <td>{item.fechaNa_pa}</td>
-                  <td>{item.fechaVac_pa}</td>
-                  <td>{item.fechaDesp_pa}</td>
+                  <td>{item.genero_cria}</td>
+                  <td>{item.fechaNa_cria}</td>
+                  <td>{item.fechaVac_cria}</td>
+                  <td>{item.fechaDesp_cria}</td>
+                  <td>{item.peso_cria}</td>
                   <td>
                     <Button
                       className="btn btn-warning btn-small float-right"
@@ -221,18 +232,18 @@ const Padrones: FC = () => {
         <div className="col-4">
           <h4 className="text-center"><b>{edicion ? 'Editar' : 'Agregar'}</b></h4>
           <form onSubmit={edicion ? editar : agregar}>
-            <TextField id="outlined-basic" label="Nombre del Padron" variant="outlined"
+            <TextField id="outlined-basic" label="Nombre de la Cria" variant="outlined"
               className="form-control mb-2"
-              placeholder="Nombre del Padron"
+              placeholder="Nombre de la Cria"
               onChange={(e) => setNombre(e.target.value)}
               value={nombre}
               autoFocus
             />
-            <TextField id="outlined-basic" label="Nombre del Proveedor" variant="outlined"
+            <TextField id="outlined-basic" label="Nombre del Padron" variant="outlined"
               className="form-control mb-2"
-              placeholder="Nombre del Proveedor"
-              onChange={(e) => setNomPro(e.target.value)}
-              value={nomPro}
+              placeholder="Nombre del Padron"
+              onChange={(e) => setNomPa(e.target.value)}
+              value={nomPa}
             />
             <FormControl variant="outlined" sx={{ minWidth: '100%' }}>
             <InputLabel id="demo-simple-select-filled-label">Genero</InputLabel>
@@ -291,6 +302,12 @@ const Padrones: FC = () => {
               onChange={(e) => setFechaDesp(e.target.value)}
               value={fechaDesp}
             />
+            <TextField id="outlined-basic" label="Peso de la Cria" variant="outlined"
+              className="form-control mb-2"
+              placeholder="Peso de la Cria"
+              onChange={(e) => setPeso(e.target.value)}
+              value={peso}
+            />
             <Button className={edicion
               ? 'btn btn-warning btn-block'
               : 'btn btn-dark btn-block'}
@@ -305,4 +322,4 @@ const Padrones: FC = () => {
   );
 };
 
-export default Padrones;
+export default Crias;

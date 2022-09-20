@@ -28,7 +28,11 @@ const Proveedores: FC = () => {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: `Faltan los datos: ${!nombre.trim() ? '- Nombre' : ''} ${!nit.trim() ? '- Nit' : ''} ${!telCel.trim() ? '- Tel/Cel' : ''} ${!correo.trim() ? '- Correo' : ''}`,
+        text: `Faltan los datos: ${!nombre.trim()
+          ? '- Nombre' : ''} ${!nit.trim()
+          ? '- Nit' : ''} ${!telCel.trim()
+          ? '- Tel/Cel' : ''} ${!correo.trim()
+          ? '- Correo' : ''}`,
       });
       return;
     }
@@ -112,10 +116,6 @@ const Proveedores: FC = () => {
   // 6. Funcion Editar
   const editar = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    if (!nombre.trim()) {
-      console.log('No hay datos');
-      return;
-    }
 
     try {
       await updateDoc(doc(db, 'proveedor', edicionId), {
@@ -126,7 +126,11 @@ const Proveedores: FC = () => {
       });
       const arrayEditar = proveedores.map((item: any) => (
         item.id === edicionId ? {
-          id: item.id, nom_pro: nombre, nit_pro: nit, telCel_pro: telCel, correo_pro: correo,
+          id: item.id,
+          nom_pro: nombre,
+          nit_pro: nit,
+          telCel_pro: telCel,
+          correo_pro: correo,
         } : item
       ));
       setProveedores(arrayEditar);
@@ -146,7 +150,7 @@ const Proveedores: FC = () => {
       <div className="headerProveedores bg-dark" />
       <Sidebar />
       <div className="container">
-        <h1 className="text-center mt-3">CRUD PROVEEDORES</h1>
+        <h1 className="text-center mt-3">PROVEEDORES</h1>
         <hr />
         <div className="row">
           <div className="col-8">
