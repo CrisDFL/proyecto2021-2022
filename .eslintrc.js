@@ -41,6 +41,8 @@ module.exports = {
     'no-use-before-define': 0,
     'import/no-cycle': 0,
     'import/no-extraneous-dependencies': 0,
+    // 'no-restricted-globals': false,
+    'react/no-unknown-property': ['error', { ignore: ['tsx'] }],
     'no-restricted-properties': [
       0,
       {

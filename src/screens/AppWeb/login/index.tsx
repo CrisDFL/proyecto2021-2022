@@ -3,9 +3,9 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import './style.css';
 import { Button } from '@mui/material';
 import { logEvent } from '@firebase/analytics';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { useNavigate } from 'react-router-dom';
 import { analytics } from '../../../utils/firebase';
 
 const Login: FC = () => {
@@ -28,9 +28,7 @@ const Login: FC = () => {
     });
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const { user } = userCredential;
         navigate('/Crud/Crias');
-
         Toast.fire({
           icon: 'success',
           title: 'Inicio de sesión éxitoso!',
@@ -44,14 +42,18 @@ const Login: FC = () => {
       });
   };
 
+  history.pushState(null, location.href);
+  window.onpopstate = function () {
+    history.go(1);
+  };
+
   return (
     <div className="loginPage">
       <div className="login">
         <img
           className="imagen"
           src="/resources/img/header/logo.png"
-          alt="logo de inicio de sesion"
-        />
+          alt="logo de inicio de sesion" />
         <h1>Inicio de Sesion</h1>
         <form>
           <label htmlFor="correo">
@@ -62,8 +64,7 @@ const Login: FC = () => {
               name="correo"
               required
               placeholder="Correo"
-              onChange={(e) => setEmail(e.target.value)}
-            />
+              onChange={(e) => setEmail(e.target.value)} />
           </label>
           <label htmlFor="contraseña">
             Contraseña
@@ -76,8 +77,7 @@ const Login: FC = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
                 logEvent(analytics, 'laboratory');
-              }}
-            />
+              } } />
           </label>
           <div className="containerButton">
             <Button
@@ -85,7 +85,7 @@ const Login: FC = () => {
               onClick={() => {
                 iniciar();
                 logEvent(analytics, 'login');
-              }}>
+              } }>
               Iniciar Sesion
             </Button>
           </div>
