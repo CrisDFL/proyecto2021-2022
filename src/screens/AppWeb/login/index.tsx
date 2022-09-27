@@ -42,10 +42,10 @@ const Login: FC = () => {
       });
   };
 
-  history.pushState(null, location.href);
-  window.onpopstate = function () {
-    history.go(1);
-  };
+  // history.pushState(null, location.href);
+  // window.onpopstate = function () {
+  //   history.go(1);
+  // };
 
   return (
     <div className="loginPage">

@@ -1,5 +1,5 @@
-.containNosotros {
-    height: 30vh;
+.containBackground {
+    height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,4 +13,128 @@
     background-attachment: fixed;
     background-size: cover;
     text-align: center;
+}
+.containNosotros {
+    display: flex;
+    margin-inline-start: 70px;
+    margin-inline-end: 70px;
+}
+.containCards {
+    width: 100%;
+    display: flex;
+    max-width: 1300px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding-left: 70px;
+    position: relative;
+    bottom: 50px;
+}
+/*Container 3D*/
+.container-3d {
+    width: 290px;
+    height: 300px;
+    perspective: 8000px; /*Referencial for 3d Perspective*/
+    border-radius: 10px;
+    padding: 10px;
+}
+/*Card*/
+.cards {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    box-shadow: 0 0 4px 2px #665c22;
+    border-radius: 10px;
+    transition: all 1s ease-in-out;
+    transform-style: preserve-3d; /*Force the two faces to rotate together*/
+}
+.front,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden; /*hide backface*/
+    transition: all 1.5s ease-in-out;
+    transform-style: preserve-3d; /*to allow 3d on images*/
+    background: linear-gradient(
+    129deg,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(255, 255, 255, 1) 14%,
+    rgba(255, 255, 255, 1) 19%,
+    rgba(0, 0, 0, 1) 33%
+    );
+    background-size: 300% 100%;
+}
+.front {
+    background-position: left;
+}
+.back {
+    background-position: right;
+    transform: rotateY(180deg); /*rotate this face*/
+}
+/*Content Card*/
+.front-content,
+.back-content {
+    transform: translateZ(70px);
+}
+/*Front*/
+.front-content {
+    text-align: center;
+}
+.front-content img {
+    width: 47%;
+    border-radius: 50%;
+    margin-top: 10%;
+    background: white;
+}
+.front-content h2 {
+    font-family: "Ruthie", cursive;
+    text-shadow: 2px 4px 2px #893c01;
+    color: gold;
+    margin: 0;
+    margin-top: 10%;
+}
+/*Back*/
+.back-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: gold;
+    text-shadow: 1px 3px 2px #000000;
+    font-family: "Lobster", cursive;
+}
+.back-content img {
+    width: 40%;
+    border-radius: 50%;
+    margin-bottom: 10%;
+    background: white;
+}
+/*Hover Transition*/
+.container-3d:hover .cards {
+    transform: rotateY(-180deg); /*rotate card when hover on container*/
+}
+.container-3d:hover .front {
+    background-position: right;
+}
+.container-3d:hover .back {
+    background-position: left;
+}
+.textNosotros {
+    text-align: left;
+}
+.textNosotros h2 {
+    font-family: sans-serif;
+    font-weight: 800;
+    text-transform: capitalize;
+    font-size: 52px;
+}
+.textNosotros strong {
+    font-size: 32px;
+}
+.textNosotros p {
+    font-size: 25px;
+    font-weight: 600;
 }
