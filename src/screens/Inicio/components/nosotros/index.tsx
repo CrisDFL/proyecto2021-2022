@@ -26,8 +26,8 @@ const Nosotros: FC = () => (
                                 </div>
                                 <div className="back">
                                     <div className="back-content">
-                                    <img src="/resources/img/nosotros/card2.jpg" alt=""/>
-                                        <p>Al momento que tu cachorro llegue a tus manos se te entregara su certificado de pureza</p>
+                                    <img src="/resources/img/nosotros/card.jpg" alt=""/>
+                                        <p>Al momento que tu cachorro llegue a tus manos se te entregara su certificado de pureza.</p>
                                     </div>
                                 </div>
                             </div>
@@ -36,14 +36,14 @@ const Nosotros: FC = () => (
                             <div className="cards">
                                 <div className="front">
                                     <div className="front-content">
-                                        <img src="/resources/img/nosotros/card1.png" alt=""/>
-                                        <h2>Certificado de Pureza</h2>
+                                        <img src="/resources/img/nosotros/card2.png" alt=""/>
+                                        <h2>Certificado de Salud</h2>
                                     </div>
                                 </div>
                                 <div className="back">
                                     <div className="back-content">
-                                    <img src="/resources/img/nosotros/card2.jpg" alt=""/>
-                                        <p>Al momento que tu cachorro llegue a tus manos se te entregara su certificado de pureza</p>
+                                    <img src="/resources/img/nosotros/card.jpg" alt=""/>
+                                        <p>Tu bulldog vendra acompañado de un desarrollo sano y fuerte de su cuerpo con el que se asegurara su salud plena.</p>
                                     </div>
                                 </div>
                             </div>
@@ -52,14 +52,14 @@ const Nosotros: FC = () => (
                             <div className="cards">
                                 <div className="front">
                                     <div className="front-content">
-                                        <img src="/resources/img/nosotros/card1.png" alt=""/>
-                                        <h2>Certificado de Pureza</h2>
+                                        <img src="/resources/img/nosotros/card3.png" alt=""/>
+                                        <h2>Carnet de Vacunacion</h2>
                                     </div>
                                 </div>
                                 <div className="back">
                                     <div className="back-content">
-                                    <img src="/resources/img/nosotros/card2.jpg" alt=""/>
-                                        <p>Al momento que tu cachorro llegue a tus manos se te entregara su certificado de pureza</p>
+                                    <img src="/resources/img/nosotros/card.jpg" alt=""/>
+                                        <p>Tu cachorro ira con una armadura impenetrable al momento de su entrega. Se entregara con todas sus vacunas al dia que le permitan un estilo de vida saludable.</p>
                                     </div>
                                 </div>
                             </div>
@@ -68,14 +68,14 @@ const Nosotros: FC = () => (
                             <div className="cards">
                                 <div className="front">
                                     <div className="front-content">
-                                        <img src="/resources/img/nosotros/card1.png" alt=""/>
-                                        <h2>Certificado de Pureza</h2>
+                                        <img src="/resources/img/nosotros/card4.png" alt=""/>
+                                        <h2>Cuidado y Recomendaciones</h2>
                                     </div>
                                 </div>
                                 <div className="back">
                                     <div className="back-content">
-                                    <img src="/resources/img/nosotros/card2.jpg" alt=""/>
-                                        <p>Al momento que tu cachorro llegue a tus manos se te entregara su certificado de pureza</p>
+                                    <img src="/resources/img/nosotros/card.jpg" alt=""/>
+                                        <p>Sabemos que deseas lo mejor para tu pequeño, por esta razon te de facilitaran cuidados y recomendaciones que debes tener en cuenta al momento de su crianza.</p>
                                     </div>
                                 </div>
                             </div>

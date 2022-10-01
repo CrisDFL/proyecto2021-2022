@@ -41,8 +41,13 @@ module.exports = {
     'no-use-before-define': 0,
     'import/no-cycle': 0,
     'import/no-extraneous-dependencies': 0,
-    // 'no-restricted-globals': false,
+    //
     'react/no-unknown-property': ['error', { ignore: ['tsx'] }],
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'react/destructuring-assignment': 'off',
+    'no-restricted-globals': 'off',
+    //
     'no-restricted-properties': [
       0,
       {
