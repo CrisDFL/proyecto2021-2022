@@ -64,7 +64,7 @@ const Padrones: FC = () => {
         },
       ]);
     } catch (error) {
-    //   console.log(error);
+      alert(error);
     }
     setNombre('');
     setNomPro('');
@@ -77,12 +77,10 @@ const Padrones: FC = () => {
   // 3. Funcion Mostrar Datos
   const getDatos = async () => {
     const data = await getDocs(collection(db, 'padron'));
-    //   console.log(data.docs);
     const arrayData = data.docs.map((docData) => ({
       id: docData.id,
       ...docData.data(),
     }));
-    //   console.log(arrayData);
     setPadrones(arrayData);
   };
   useEffect(() => {
@@ -161,12 +159,16 @@ const Padrones: FC = () => {
       setFechaDesp('');
       setEdicionId('');
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
   const handleChange = (event: SelectChangeEvent) => {
     setGenero(event.target.value);
+  };
+  history.pushState(null, location.href);
+  window.onpopstate = () => {
+    history.go(1);
   };
 
   return (

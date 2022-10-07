@@ -68,7 +68,7 @@ const Crias: FC = () => {
         },
       ]);
     } catch (error) {
-    //   console.log(error);
+      alert(error);
     }
     setNombre('');
     setNomPa('');
@@ -82,12 +82,10 @@ const Crias: FC = () => {
   // 3. Funcion Mostrar Datos
   const getDatos = async () => {
     const data = await getDocs(collection(db, 'cria'));
-    //   console.log(data.docs);
     const arrayData = data.docs.map((docData) => ({
       id: docData.id,
       ...docData.data(),
     }));
-    //   console.log(arrayData);
     setCrias(arrayData);
   };
   useEffect(() => {
@@ -170,12 +168,16 @@ const Crias: FC = () => {
       setPeso('');
       setEdicionId('');
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
   const handleChange = (event: SelectChangeEvent) => {
     setGenero(event.target.value);
+  };
+  history.pushState(null, location.href);
+  window.onpopstate = () => {
+    history.go(1);
   };
 
   return (

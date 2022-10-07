@@ -54,7 +54,7 @@ const Proveedores: FC = () => {
         },
       ]);
     } catch (error) {
-    //   console.log(error);
+      alert(error);
     }
     setNombre('');
     setNit('');
@@ -65,12 +65,10 @@ const Proveedores: FC = () => {
   // 3. Funcion Mostrar Datos
   const getDatos = async () => {
     const data = await getDocs(collection(db, 'proveedor'));
-    //   console.log(data.docs);
     const arrayData = data.docs.map((docData) => ({
       id: docData.id,
       ...docData.data(),
     }));
-    //   console.log(arrayData);
     setProveedores(arrayData);
   };
   useEffect(() => {
@@ -141,8 +139,12 @@ const Proveedores: FC = () => {
       setCorreo('');
       setEdicionId('');
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
+  };
+  history.pushState(null, location.href);
+  window.onpopstate = () => {
+    history.go(1);
   };
 
   return (

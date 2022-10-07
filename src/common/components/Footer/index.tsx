@@ -1,6 +1,7 @@
 import { Button, Input } from '@mui/material';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
 import Iframe from 'react-iframe';
+import emailjs from 'emailjs-com';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import MapIcon from '@mui/icons-material/Map';
@@ -9,7 +10,16 @@ import EmailIcon from '@mui/icons-material/Email';
 import CopyrightRoundedIcon from '@mui/icons-material/CopyrightRounded';
 import './style.css';
 
-const Footer: FC = () => (
+const Footer: FC = () => {
+  const form = useRef<any>();
+  const enviarEmail = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_qad5kne', 'template_jzc2uf3', form.current, 'sKj_RhuQCsrlyhT5h').then(() => {
+      alert('Se ha enviado correctamente.');
+    });
+  };
+  return (
   <footer className="bg-dark">
     <div className="main-content">
       <div className="left">
@@ -59,18 +69,18 @@ const Footer: FC = () => (
       <div className="right box">
         <h2>CONTACTANOS</h2>
         <div className="content">
-          <form action="#">
+          <form action="#" onSubmit={enviarEmail} ref={form}>
             <div className="NyA">
               <div className="text">Nombre y Apellido *</div>
-              <Input type="text" required />
+              <Input type="text" required id="nombre" name="nombre" />
             </div>
             <div className="email">
               <div className="text">Email *</div>
-              <Input type="email" required />
+              <Input type="email" required id="email" name="email"/>
             </div>
             <div className="msg">
               <div className="text">Mensaje *</div>
-              <textarea cols={25} rows={2} required></textarea>
+              <textarea cols={25} rows={2} required id="mensaje" name="mensaje"></textarea>
             </div>
             <div className="btn">
               <Button type="submit">Enviar</Button>
@@ -85,10 +95,11 @@ const Footer: FC = () => (
       </span>
       <span className="credit">
         {' '}
-        2022 Todos los Derechos Reservados | <a href="."> Cristhian Fabra</a>
+        2022 Todos los Derechos Reservados | <a href=".">Cristhian Fabra</a>
       </span>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

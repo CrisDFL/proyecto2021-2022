@@ -6,8 +6,21 @@ import PetsIcon from '@mui/icons-material/Pets';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button } from 'reactstrap';
+import { getAuth, signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
-const Sidebar: FC = () => (
+const Sidebar: FC = () => {
+  const navigate = useNavigate();
+  const auth = getAuth();
+  const logOut = () => {
+    signOut(auth).then(() => {
+      navigate('/Login');
+    }).catch((error) => {
+      // An error happened.
+    });
+  };
+  return (
     <label htmlFor="btn">
         <input type="checkbox" className="button" id="btn"/>
         <div className="toggle">
@@ -65,10 +78,14 @@ const Sidebar: FC = () => (
                             Ventas
                         </a>
                     </li>
+                    <li className="containerLogout">
+                        <Button className="bg-warning logout" onClick={() => logOut()}>Cerrar Sesion</Button>
+                    </li>
                 </div>
             </ul>
         </div>
     </label>
-);
+  );
+};
 
 export default Sidebar;

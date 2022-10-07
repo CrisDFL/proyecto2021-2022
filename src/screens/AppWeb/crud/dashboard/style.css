@@ -114,3 +114,12 @@ input:checked ~ .slide {
 .manejoCompras{
     padding: 10px;
 }
+.logout {
+    color: black;
+    font-weight: bold;
+}
+.containerLogout {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

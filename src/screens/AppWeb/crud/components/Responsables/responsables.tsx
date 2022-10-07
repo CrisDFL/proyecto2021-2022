@@ -65,12 +65,10 @@ const Responsables: FC = () => {
   // 3. Funcion Mostrar Datos
   const getDatos = async () => {
     const data = await getDocs(collection(db, 'responsable'));
-    //   console.log(data.docs);
     const arrayData = data.docs.map((docData) => ({
       id: docData.id,
       ...docData.data(),
     }));
-    //   console.log(arrayData);
     setResponsables(arrayData);
   };
   useEffect(() => {
@@ -141,8 +139,12 @@ const Responsables: FC = () => {
       setDireccion('');
       setEdicionId('');
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
+  };
+  history.pushState(null, location.href);
+  window.onpopstate = () => {
+    history.go(1);
   };
 
   return (
