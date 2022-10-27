@@ -32,7 +32,7 @@ const Clientes: FC = () => {
           ? '- Nombre' : ''} ${!telCel.trim()
           ? '- Tel/Cel' : ''}  ${!correo.trim()
           ? '- Correo' : ''} ${!direccion.trim()
-          ? '- Direccion' : ''}`,
+          ? '- Dirección' : ''}`,
       });
       return;
     }
@@ -162,7 +162,7 @@ const Clientes: FC = () => {
                 <th>Nombre</th>
                 <th>Tel/Cel</th>
                 <th>Correo</th>
-                <th>Direccion</th>
+                <th>Dirección</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -215,9 +215,9 @@ const Clientes: FC = () => {
               onChange={(e) => setCorreo(e.target.value)}
               value={correo}
             />
-            <TextField id="outlined-basic" label="Direccion del Cliente" variant="outlined"
+            <TextField id="outlined-basic" label="Dirección del Cliente" variant="outlined"
               className="form-control mb-2"
-              placeholder="Direccion del Cliente"
+              placeholder="Dirección del Cliente"
               onChange={(e) => setDireccion(e.target.value)}
               value={direccion}
             />

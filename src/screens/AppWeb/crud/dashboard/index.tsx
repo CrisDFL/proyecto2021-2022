@@ -36,7 +36,7 @@ const Sidebar: FC = () => {
                     <li>
                         <a href="./Crias">
                             <HomeIcon />
-                            Gestion de Crias
+                            Gestión de Crías
                         </a>
                     </li>
                 </div>
@@ -79,7 +79,7 @@ const Sidebar: FC = () => {
                         </a>
                     </li>
                     <li className="containerLogout">
-                        <Button className="bg-warning logout" onClick={() => logOut()}>Cerrar Sesion</Button>
+                        <Button className="bg-warning logout" onClick={() => logOut()}>Cerrar Sesión</Button>
                     </li>
                 </div>
             </ul>

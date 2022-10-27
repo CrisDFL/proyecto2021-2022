@@ -28,7 +28,7 @@ const Ventas: FC = () => {
         icon: 'error',
         title: 'Oops...',
         text: `Faltan los datos: ${!nomCria.trim()
-          ? '- Nombre Cria' : ''} ${!nomCli.trim()
+          ? '- Nombre Cría' : ''} ${!nomCli.trim()
           ? '- Nombre Cliente' : ''}  ${!nomRes.trim()
           ? '- Nombre Responsable' : ''}`,
       });
@@ -150,7 +150,7 @@ const Ventas: FC = () => {
           <table className="table table-dark table-hover">
             <thead>
               <tr>
-                <th>Nombre Cria</th>
+                <th>Nombre Cría</th>
                 <th>Nombre Cliente</th>
                 <th>Nombre Responsable</th>
                 <th>Acciones</th>
@@ -184,9 +184,9 @@ const Ventas: FC = () => {
         <div className="col-4">
           <h4 className="text-center"><b>{edicion ? 'Editar' : 'Agregar'}</b></h4>
           <form onSubmit={edicion ? editar : agregar}>
-            <TextField id="outlined-basic" label="Nombre de la Cria" variant="outlined"
+            <TextField id="outlined-basic" label="Nombre de la Cría" variant="outlined"
               className="form-control mb-2"
-              placeholder="Nombre de la Cria"
+              placeholder="Nombre de la Cría"
               onChange={(e) => setNomCria(e.target.value)}
               value={nomCria}
               autoFocus

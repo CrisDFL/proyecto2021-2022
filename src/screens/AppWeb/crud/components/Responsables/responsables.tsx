@@ -32,7 +32,7 @@ const Responsables: FC = () => {
           ? '- Nombre' : ''} ${!telCel.trim()
           ? '- Tel/Cel' : ''}  ${!correo.trim()
           ? '- Correo' : ''} ${!direccion.trim()
-          ? '- Direccion' : ''}`,
+          ? '- Dirección' : ''}`,
       });
       return;
     }
@@ -162,7 +162,7 @@ const Responsables: FC = () => {
                 <th>Nombre</th>
                 <th>Tel/Cel</th>
                 <th>Correo</th>
-                <th>Direccion</th>
+                <th>Dirección</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -215,9 +215,9 @@ const Responsables: FC = () => {
               onChange={(e) => setCorreo(e.target.value)}
               value={correo}
             />
-            <TextField id="outlined-basic" label="Direccion del Responsable" variant="outlined"
+            <TextField id="outlined-basic" label="Dirección del Responsable" variant="outlined"
               className="form-control mb-2"
-              placeholder="Direccion del Responsable"
+              placeholder="Dirección del Responsable"
               onChange={(e) => setDireccion(e.target.value)}
               value={direccion}
             />

@@ -54,7 +54,7 @@ const Login: FC = () => {
           className="imagen"
           src="/resources/img/header/logo.png"
           alt="logo de inicio de sesion" />
-        <h1>Inicio de Sesion</h1>
+        <h1>Inicio de Sesión</h1>
         <form>
           <label htmlFor="correo">
             Correo
@@ -86,7 +86,7 @@ const Login: FC = () => {
                 iniciar();
                 logEvent(analytics, 'login');
               } }>
-              Iniciar Sesion
+              Iniciar Sesión
             </Button>
           </div>
           <br />

@@ -54,7 +54,7 @@ const Footer: FC = () => {
         <div className="content">
           <div className="place">
             <MapIcon />
-            <span className="text">Cajica, Cundinamarca Colombia</span>
+            <span className="text">Cajicá, Cundinamarca Colombia</span>
           </div>
           <div className="mobile">
             <PhoneAndroidIcon />
@@ -62,12 +62,12 @@ const Footer: FC = () => {
           </div>
           <div className="email">
             <EmailIcon />
-            <span className="text">danielalozano.DFL@gmail.com </span>
+            <span className="text">danielalozano.dfl@gmail.com </span>
           </div>
         </div>
       </div>
       <div className="right box">
-        <h2>CONTACTANOS</h2>
+        <h2>CONTÁCTANOS</h2>
         <div className="content">
           <form action="#" onSubmit={enviarEmail} ref={form}>
             <div className="NyA">

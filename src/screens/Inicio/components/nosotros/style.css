@@ -32,8 +32,8 @@
 }
 /*Container 3D*/
 .container-3d {
-    width: 220px;
-    height: 290px;
+    width: 210px;
+    height: 280px;
     perspective: 8000px; /*Referencial for 3d Perspective*/
     border-radius: 10px;
     padding: 10px;
@@ -42,7 +42,7 @@
 .cards {
     position: relative;
     width: 100%;
-    height: 240px;
+    height: 210px;
     box-shadow: 0 0 4px 2px #665c22;
     border-radius: 10px;
     transition: all 1s ease-in-out;
@@ -94,6 +94,7 @@
     color: gold;
     margin: 0;
     margin-top: 10%;
+    font-size: 20px;
 }
 /*Back*/
 .back-content {
@@ -105,9 +106,10 @@
     color: gold;
     text-shadow: 1px 3px 2px #000000;
     font-family: "Lobster", cursive;
+    font-size: 12px;
 }
 .back-content img {
-    width: 40%;
+    width: 30%;
     border-radius: 50%;
     margin-bottom: 3%;
     background: white;

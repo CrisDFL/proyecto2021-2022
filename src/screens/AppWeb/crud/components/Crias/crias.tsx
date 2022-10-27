@@ -34,12 +34,12 @@ const Crias: FC = () => {
         icon: 'error',
         title: 'Oops...',
         text: `Faltan los datos: ${!nombre.trim()
-          ? '- Nombre Cria' : ''} ${!nomPa.trim()
+          ? '- Nombre Cría' : ''} ${!nomPa.trim()
           ? '- Nombre Proveedor' : ''}  ${!genero.trim()
           ? '- Genero' : ''} ${!fechaNa.trim()
           ? '- Fecha de Nacimiento' : ''} ${!fechaVac.trim()
-          ? '- Fecha de Vacunacion' : ''} ${!fechaDesp.trim()
-          ? '- Fecha de Desparacitacion' : ''} ${!peso.trim()
+          ? '- Fecha de Vacunación' : ''} ${!fechaDesp.trim()
+          ? '- Fecha de Desparasitación' : ''} ${!peso.trim()
           ? '- Peso' : ''}`,
       });
       return;
@@ -185,7 +185,7 @@ const Crias: FC = () => {
       <div className="headerProveedores bg-dark"></div>
       <Sidebar />
       <div className="container">
-      <h1 className="text-center mt-3">GESTION DE CRIAS</h1>
+      <h1 className="text-center mt-3">GESTIÓN DE CRÍAS</h1>
       <hr />
       <div className="row">
         <div className="col-8">
@@ -193,7 +193,7 @@ const Crias: FC = () => {
             <thead>
               <tr>
                 <th>Nombre</th>
-                <th>Nombre Padron</th>
+                <th>Nombre Padrón</th>
                 <th>Genero</th>
                 <th>Fecha Na.</th>
                 <th>Fecha Vac.</th>
@@ -234,16 +234,16 @@ const Crias: FC = () => {
         <div className="col-4">
           <h4 className="text-center"><b>{edicion ? 'Editar' : 'Agregar'}</b></h4>
           <form onSubmit={edicion ? editar : agregar}>
-            <TextField id="outlined-basic" label="Nombre de la Cria" variant="outlined"
+            <TextField id="outlined-basic" label="Nombre de la Cría" variant="outlined"
               className="form-control mb-2"
-              placeholder="Nombre de la Cria"
+              placeholder="Nombre de la Cría"
               onChange={(e) => setNombre(e.target.value)}
               value={nombre}
               autoFocus
             />
-            <TextField id="outlined-basic" label="Nombre del Padron" variant="outlined"
+            <TextField id="outlined-basic" label="Nombre del Padrón" variant="outlined"
               className="form-control mb-2"
-              placeholder="Nombre del Padron"
+              placeholder="Nombre del Padrón"
               onChange={(e) => setNomPa(e.target.value)}
               value={nomPa}
             />
@@ -281,7 +281,7 @@ const Crias: FC = () => {
             <TextField
               id="outlined-basic"
               variant="outlined"
-              label="Fecha de Vacunacion"
+              label="Fecha de Vacunación"
               type="date"
               sx={{ width: '100%' }}
               InputLabelProps={{
@@ -294,7 +294,7 @@ const Crias: FC = () => {
             <TextField
               id="outlined-basic"
               variant="outlined"
-              label="Fecha de Desparacitacion"
+              label="Fecha de Desparasitación"
               type="date"
               sx={{ width: '100%' }}
               InputLabelProps={{
@@ -304,9 +304,9 @@ const Crias: FC = () => {
               onChange={(e) => setFechaDesp(e.target.value)}
               value={fechaDesp}
             />
-            <TextField id="outlined-basic" label="Peso de la Cria" variant="outlined"
+            <TextField id="outlined-basic" label="Peso de la Cría" variant="outlined"
               className="form-control mb-2"
-              placeholder="Peso de la Cria"
+              placeholder="Peso de la Cría"
               onChange={(e) => setPeso(e.target.value)}
               value={peso}
             />

@@ -10,10 +10,10 @@ const Nosotros: FC = () => (
                         <h2>Que nos distingue</h2>
                         <br />
                         <strong>AMPLIA EXPERIENCIA</strong>
-                        <p>Somos un criadero confiable, responsable, y altamente capacitado para darte un servicio a la altura. Siempre a la vanguardia y a la orden de nuestros clientes, por tanto somos una opcion a considerar si buscas un amigo de cuatros patas.</p>
+                        <p>Somos un criadero confiable, responsable, y altamente capacitado para darte un servicio a la altura. Siempre a la vanguardia y a la orden de nuestros clientes, por tanto, somos una opción a considerar si buscas un amigo de cuatros patas.</p>
                         <br />
                         <strong>EL MEJOR AMIGO DEL HOMBRE</strong>
-                        <p>El perro es considerado un animal fiel, leal y de gran ayuda para el ser humano, con el tiempo hemos creado cientos de razas domesticas, en las cuales una resalta por su gran cariño, su exelente lealtad y ser un buen perro guardian, <b>El Bulldog Frances.</b></p>
+                        <p>El perro es considerado un animal fiel, leal y de gran ayuda para el ser humano, con el tiempo hemos creado cientos de razas domésticas, en las cuales una resalta por su gran cariño, su excelente lealtad y ser un buen perro guardián, <b>El Bulldog Francés.</b></p>
                     </div>
                     <div className="containCards">
                         <div className="container-3d">
@@ -43,7 +43,7 @@ const Nosotros: FC = () => (
                                 <div className="back">
                                     <div className="back-content">
                                     <img src="/resources/img/nosotros/card.jpg" alt=""/>
-                                        <p>Tu bulldog vendra acompañado de un desarrollo sano y fuerte de su cuerpo con el que se asegurara su salud plena.</p>
+                                        <p>Tu bulldog vendrá acompañado de un desarrollo sano y fuerte de su cuerpo con el que se asegurará su salud plena.</p>
                                     </div>
                                 </div>
                             </div>
@@ -53,13 +53,13 @@ const Nosotros: FC = () => (
                                 <div className="front">
                                     <div className="front-content">
                                         <img src="/resources/img/nosotros/card3.png" alt=""/>
-                                        <h2>Carnet de Vacunacion</h2>
+                                        <h2>Carnet de Vacunación</h2>
                                     </div>
                                 </div>
                                 <div className="back">
                                     <div className="back-content">
                                     <img src="/resources/img/nosotros/card.jpg" alt=""/>
-                                        <p>Tu cachorro ira con una armadura impenetrable al momento de su entrega. Se entregara con todas sus vacunas al dia que le permitan un estilo de vida saludable.</p>
+                                        <p>Tu cachorro ira con una armadura impenetrable al momento de su entrega. Se entregará con todas sus vacunas al día que le permitan un estilo de vida saludable.</p>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ const Nosotros: FC = () => (
                                 <div className="back">
                                     <div className="back-content">
                                     <img src="/resources/img/nosotros/card.jpg" alt=""/>
-                                        <p>Sabemos que deseas lo mejor para tu pequeño, por esta razon te de facilitaran cuidados y recomendaciones que debes tener en cuenta al momento de su crianza.</p>
+                                        <p>Sabemos que deseas lo mejor para tu pequeño, por esta razón te de facilitaran cuidados y recomendaciones que debes tener en cuenta al momento de su crianza.</p>
                                     </div>
                                 </div>
                             </div>

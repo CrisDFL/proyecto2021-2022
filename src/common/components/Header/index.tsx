@@ -15,7 +15,7 @@ const Header: FC = () => (
         </a>
         <h1 className="titulo">BLACK AND YELLOW</h1>
         <h2 className="contactanos">
-          CONTACTANOS:
+          CONTÁCTANOS:
           <br />
           <ul>
             <li className="social">

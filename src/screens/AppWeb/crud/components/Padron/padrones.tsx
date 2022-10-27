@@ -33,12 +33,12 @@ const Padrones: FC = () => {
         icon: 'error',
         title: 'Oops...',
         text: `Faltan los datos: ${!nombre.trim()
-          ? '- Nombre Padron' : ''} ${!nomPro.trim()
+          ? '- Nombre Padrón' : ''} ${!nomPro.trim()
           ? '- Nombre Proveedor' : ''}  ${!genero.trim()
           ? '- Genero' : ''} ${!fechaNa.trim()
           ? '- Fecha de Nacimiento' : ''} ${!fechaVac.trim()
-          ? '- Fecha de Vacunacion' : ''} ${!fechaDesp.trim()
-          ? '- Fecha de Desparacitacion' : ''}`,
+          ? '- Fecha de Vacunación' : ''} ${!fechaDesp.trim()
+          ? '- Fecha de Desparasitación' : ''}`,
       });
       return;
     }
@@ -223,9 +223,9 @@ const Padrones: FC = () => {
         <div className="col-4">
           <h4 className="text-center"><b>{edicion ? 'Editar' : 'Agregar'}</b></h4>
           <form onSubmit={edicion ? editar : agregar}>
-            <TextField id="outlined-basic" label="Nombre del Padron" variant="outlined"
+            <TextField id="outlined-basic" label="Nombre del Padrón" variant="outlined"
               className="form-control mb-2"
-              placeholder="Nombre del Padron"
+              placeholder="Nombre del Padrón"
               onChange={(e) => setNombre(e.target.value)}
               value={nombre}
               autoFocus
@@ -270,7 +270,7 @@ const Padrones: FC = () => {
             <TextField
               id="outlined-basic"
               variant="outlined"
-              label="Fecha de Vacunacion"
+              label="Fecha de Vacunación"
               type="date"
               sx={{ width: '100%' }}
               InputLabelProps={{
@@ -283,7 +283,7 @@ const Padrones: FC = () => {
             <TextField
               id="outlined-basic"
               variant="outlined"
-              label="Fecha de Desparacitacion"
+              label="Fecha de Desparasitación"
               type="date"
               sx={{ width: '100%' }}
               InputLabelProps={{

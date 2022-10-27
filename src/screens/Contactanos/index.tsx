@@ -23,7 +23,7 @@ const Contactanos: FC = () => {
       <form action="POST" className="form" onSubmit={enviarEmail} ref={form}>
         <div className="form-header">
           <h1 className="form-title">
-            <span>Contactanos</span>
+            <span>Contáctanos</span>
           </h1>
         </div>
         <label htmlFor="nombre" className="form-label">
@@ -53,7 +53,7 @@ const Contactanos: FC = () => {
             id="email"
             name="email"
             className="form-input"
-            placeholder="Escriba su Correo Electronico"
+            placeholder="Escriba su Correo Electrónico"
           />
         </label>
         <label htmlFor="mensaje" className="form-label">

@@ -39,6 +39,21 @@ const Galeria: FC = () => (
                   <img src="/resources/img/galeria/perro6.jpg" alt="Imagen" />
                 </a>
             </div>
+            <div className="gallery-card">
+                <a href="/resources/img/slice/slice1.jpg" data-lightbox="roadtrip">
+                  <img src="/resources/img/slice/slice1.jpg" alt="Imagen" />
+                </a>
+            </div>
+            <div className="gallery-card">
+                <a href="/resources/img/slice/slice4.jpeg" data-lightbox="roadtrip">
+                  <img src="/resources/img/slice/slice4.jpeg" alt="Imagen" />
+                </a>
+            </div>
+            <div className="gallery-card">
+                <a href="/resources/img/slice/slice5.jpeg" data-lightbox="roadtrip">
+                  <img src="/resources/img/slice/slice5.jpeg" alt="Imagen" />
+                </a>
+            </div>
     </div >
     <Footer />
   </div>

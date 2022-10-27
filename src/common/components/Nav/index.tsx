@@ -18,7 +18,7 @@ const Nav: FC = () => (
             className="nav-link active text-white"
             aria-current="page"
             href="./Galeria">
-            Galeria
+            Galería
           </a>
         </li>
         <li className="nav-item">
@@ -26,7 +26,7 @@ const Nav: FC = () => (
             className="nav-link active text-white"
             aria-current="page"
             href="./Contactanos">
-            Contactanos
+            Contáctanos
           </a>
         </li>
         <li className="nav-item">
@@ -34,7 +34,7 @@ const Nav: FC = () => (
             className="nav-link active text-white"
             aria-current="page"
             href="./Login">
-            Iniciar Sesion
+            Iniciar Sesión
           </a>
         </li>
       </ul>
