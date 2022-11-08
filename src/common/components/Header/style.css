@@ -9,15 +9,12 @@
 /*FIN DEL LOGO*/
 /*NOMBRE DE LA PAGINA Y TITULO BLACK AND YELLOW*/
 .titulo {
-  float: right;
-  padding: 50px;
+  margin-left: 250px;
   font-size: 60px;
   font-family: var(--fontSecondary);
   color: var(--white);
-  display: block;
-  position: relative;
-  left: 150px;
-  top: 40px;
+  display: flex;
+  align-items: center;
 }
 /*FIN DEL NOMBRE DE LA PAGINA Y TITULO BLACK AND YELLOW*/
 /*TITULO DE CONTACTANOS*/
