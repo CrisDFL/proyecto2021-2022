@@ -47,6 +47,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/destructuring-assignment': 'off',
     'no-restricted-globals': 'off',
+    "jsx-a11y/label-has-associated-control": "off",
     //
     'no-restricted-properties': [
       0,

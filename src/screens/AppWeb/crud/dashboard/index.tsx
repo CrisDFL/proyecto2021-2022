@@ -23,11 +23,6 @@ const Sidebar: FC = () => {
   return (
     <label htmlFor="btn">
         <input type="checkbox" className="button" id="btn"/>
-        <div className="toggle">
-            <span className="top_line common"></span>
-            <span className="middle_line common"></span>
-            <span className="bottom_line common"></span>
-        </div>
         <div className="slide bg-dark text-warning">
             <h3 className="titleSidebar text-center">Black and Yellow</h3>
             <hr className="linesSubtitles"/>

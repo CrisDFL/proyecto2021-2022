@@ -50,9 +50,6 @@ const Slice: FC = () => {
             <img src={item.img} alt={item.title}/>
             <h1>{item.title}</h1>
           </div>
-          <div className="card-bottom">
-            <h3>{item.subtitle}</h3>
-          </div>
         </div>
         ))}
       </Slider>
